@@ -2,12 +2,17 @@ import React from "react";
 import { useState } from "react";
 import { Text, Button } from 'react-native'
 import * as Location from 'expo-location';
-import getCurrentWeather from './'
+import getCurrentWeather from '../../api/consulta.js';
  
 export default function Main() {
 
+    // Setando data e dia da semana 
+    const [dataAtual, setDataAtual] = useState(null)
+    let data = new Date()
+    
+
     // Pegando localização do usuario 
-    const [location, setLocation] = useState(null)
+    const [locationCoords, setLocationCoords] = useState([])
     const [errorMsg, setErrorMsg] = useState(null)
 
     function getLocation() {
@@ -20,21 +25,24 @@ export default function Main() {
             }
 
             let location = await Location.getCurrentPositionAsync({});
-            setLocation(location)
+            setLocationCoords(location.coords)
         }) ();
     }
 
     let text = 'Aguarde ...'
     if (errorMsg) {
         text = errorMsg
-    }else if (location) {
-        text = JSON.stringify(location)
+    }else if (locationCoords) {
+        text = locationCoords.latitude
     }
+
+    // Recebendo dados da API 
+
     
     return <>
 
-    <Text>{text}</Text>
-    <Button title='Teste' onclick={getLocation()}/>
+        <Text>{text}</Text>
+        <Button title='Teste' onclick={getLocation()}/>
     
     </>
 }
