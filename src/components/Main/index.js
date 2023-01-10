@@ -1,12 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Text, Button, TouchableOpacity, Image, View } from 'react-native'
+import { Text, TouchableOpacity, Image, View } from 'react-native'
 import * as Location from 'expo-location';
 import axios from "axios";
 import estilo from "./Style";
 
-import { VscDebugRestart } from 'react-icons/vsc'
 import { EvilIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
  
 export default function Main() {
 
@@ -90,34 +93,75 @@ export default function Main() {
 
     return <>
 
-        <View style={estilo.header}>
-            <View style={estilo.title}>
-                <Text style={estilo.localizacao}>{localizacao}</Text>
-                <Text style={estilo.dataAtual}>{dateAtual}</Text>
+        <View style={estilo.principal}>
+            <View style={estilo.header}>
+                <View style={estilo.title}>
+                    <Text style={estilo.localizacao}>{localizacao}</Text>
+                    <Text style={estilo.dataAtual}>{dateAtual}</Text>
+                </View>
+                <TouchableOpacity onPress={getWeatherApi}>
+                    <EvilIcons name="refresh" size={48} color="#F2F2F2" />
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={getWeatherApi}>
-                <EvilIcons name="refresh" size={48} color="#F2F2F2" />
-            </TouchableOpacity>
-        </View>
-        <View style={estilo.temperatura}>
-            <View>
-                <Image source={{uri: `https:${imagem}`}} style={{width: 64, height: 64}}/>
-                <Text style={estilo.textoCondicao}>{condicao}</Text>
+            <View style={estilo.temperatura}>
+                <View>
+                    <Image source={{uri: `https:${imagem}`}} style={{width: 64, height: 64}}/>
+                    <Text style={estilo.textoCondicao}>{condicao}</Text>
+                </View>
+                <Text style={estilo.textoTemperatura}>{temperatura}°</Text>
             </View>
-            <Text style={estilo.textoTemperatura}>{temperatura}°</Text>
+            <View style={estilo.imagemApp}>
+                <Image style={estilo.imagemAppOne} source={require('../../../assets/cloud.png')}/>
+            </View>
         </View>
-        <View>
-            <Image source={require('../../../assets/cloud.png')}/>
-        </View>
+        <View style={estilo.weatherNow}>
+            <Text style={estilo.weatherNowTitle}>Weather now</Text>
+            <View style={estilo.weatherNowPrincipal}>
+                
+                <View style={estilo.weatherNowSecundario}>
+                    <View style={estilo.weatherNowIcon}>
+                        <MaterialCommunityIcons name="temperature-celsius" size={20} color="#08158A" />
+                    </View>
+                    <View style={estilo.weatherNowView}>
+                        <Text style={estilo.weatherNowText}>Tempo</Text>
+                        <Text style={estilo.weatherNowResult}>{temperatura}°</Text>
+                    </View>
+                </View>
 
-        
-        
-        
-        <Text>{vento}</Text>
-        <Text>{humidade}</Text>
-        <Text>{precipitcao}</Text>
-        
-        
-       
+                <View style={estilo.weatherNowSecundario}>
+                    <View style={estilo.weatherNowIcon}>
+                        <Entypo name="water" size={20} color="#08158A" />
+                    </View>
+                    <View style={estilo.weatherNowView}>
+                        <Text style={estilo.weatherNowText}>Humidade</Text>
+                        <Text style={estilo.weatherNowResult}>{humidade}%</Text>
+                    </View>
+                </View>
+
+            </View>
+
+            <View style={estilo.weatherNowPrincipal}>
+                <View style={estilo.weatherNowSecundario}>
+                    <View style={estilo.weatherNowIcon}>
+                        <FontAwesome name="umbrella" size={20} color="#08158A" />
+                    </View>
+                    <View style={estilo.weatherNowView}>
+                        <Text style={estilo.weatherNowText}>Precipitação</Text>
+                        <Text style={estilo.weatherNowResult}>{precipitcao}mm</Text>
+                    </View>
+                </View>
+
+                <View style={estilo.weatherNowSecundario}>
+                    <View style={estilo.weatherNowIcon}>
+                        <Feather name="wind" size={20} color="#08158A" />
+                    </View>
+                    <View style={estilo.weatherNowView}>
+                        <Text style={estilo.weatherNowText}>Vento</Text>
+                        <Text style={estilo.weatherNowResult}>{vento}Km/h</Text>
+                    </View>
+                </View>
+            </View>
+
+        </View>
     </>
 }
