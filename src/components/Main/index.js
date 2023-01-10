@@ -161,7 +161,6 @@ export default function Main() {
                     </View>
                 </View>
             </View>
-
         </View>
     </>
 }

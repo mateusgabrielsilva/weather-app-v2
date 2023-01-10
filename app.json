@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#03173E"
-      }
+      },
+      "package": "com.mateusgsilva.weatherApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3d1c4766-1b88-4d70-8ada-c3d2fe2583d4"
+      }
     }
   }
 }

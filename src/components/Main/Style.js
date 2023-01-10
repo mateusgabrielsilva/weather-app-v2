@@ -47,8 +47,9 @@ const estilo = StyleSheet.create({
     },
     imagemApp: {
         width: '100%',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
+        flexDirection: 'column',
         marginTop: 20,
     },
     imagemAppOne: {
@@ -57,12 +58,17 @@ const estilo = StyleSheet.create({
     },
     weatherNow: {
         width: '100%',
-        height: '100%',
         marginTop: 70,
         backgroundColor: colorLight,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         padding: 20,
+        flexDirection: 'column',
+        alignContent: 'center',
+        justifyContent: 'space-around',
+        paddingVertical: 50,
+        position: 'absolute',
+        bottom: 0
     },
     weatherNowTitle: {
         color: colorBlue,
